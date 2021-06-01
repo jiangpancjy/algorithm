@@ -36,3 +36,13 @@ class Sort:
             else:
                 small_elements.append(element)
         return self.quick_sort(small_elements) + [pivot] + self.quick_sort(big_elements)
+
+    def selection_sort(self, collection):
+        length = len(collection)
+        for i in range(length):
+            index_of_min_elem = i
+            for j in range(i, length - 1):
+                if collection[index_of_min_elem] > collection[j + 1]:
+                    index_of_min_elem = j + 1
+            collection[i], collection[index_of_min_elem] = collection[index_of_min_elem], collection[i]
+        return collection
