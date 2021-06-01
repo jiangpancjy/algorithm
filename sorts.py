@@ -36,10 +36,3 @@ class Sort:
             else:
                 small_elements.append(element)
         return self.quick_sort(small_elements) + [pivot] + self.quick_sort(big_elements)
-
-
-if __name__ == '__main__':
-    import random
-    collection = random.sample(range(-50, 50), 100)
-    sort = Sort()
-    print(sort.quick_sort(collection))
