@@ -87,29 +87,29 @@ class LinkedList:
             pre = pre.next
         pre.next = None
 
-    def remove_from_seq(self, seq):
+    def remove_from_pos(self, pos):
         """
         Delete the node of the specified sequence number from the linked list
-        :param seq: The sequence number of the node to be deleted
+        :param pos: The sequence number of the node to be deleted
             you can input positive integer(1, 2, 3, ……)
         """
         if self.head is None:
             print("Linked list has no element")
             return
-        if seq == 0:
+        if pos == 0:
             print("Please input positive integer")
             return
-        if seq == 1:
+        if pos == 1:
             self.head = self.head.next
             return
         curr = self.head
         i = 1
-        while i < seq - 1:
+        while i < pos - 1:
             if curr.next.next is None:
                 break
             curr = curr.next
             i += 1
-        if seq - i > 1:
+        if pos - i > 1:
             print("Sequence out of range")
             return
         if curr.next.next is None:
