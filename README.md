@@ -11,6 +11,7 @@
 已实现：
 
 - 冒泡排序 (Bubble Sort)
+- 快速排序 (Quick Sort)
 
 
 
