@@ -37,6 +37,28 @@ class Sort:
                 small_elements.append(element)
         return self.quick_sort(small_elements) + [pivot] + self.quick_sort(big_elements)
 
+    def partition(self, collection, left_index, right_index):
+        pivot = collection[left_index]
+        while left_index < right_index:
+            while left_index < right_index and collection[right_index] >= pivot:
+                right_index -= 1
+            collection[left_index] = collection[right_index]
+
+            while left_index < right_index and collection[left_index] <= pivot:
+                left_index += 1
+            collection[right_index] = collection[left_index]
+
+        collection[left_index] = pivot
+        return left_index
+
+    def quick_sort1(self, collection, left_index, right_index):
+        if left_index < right_index:
+            index_of_pivot = self.partition(collection, left_index, right_index)
+            self.quick_sort1(collection, left_index, index_of_pivot-1)
+            self.quick_sort1(collection, index_of_pivot+1, right_index)
+            return collection
+        return collection
+
     def selection_sort(self, collection):
         length = len(collection)
         for i in range(length):
