@@ -38,24 +38,26 @@ class Sort:
         return self.quick_sort(small_elements) + [pivot] + self.quick_sort(big_elements)
 
     def partition(self, collection, left_index, right_index):
-        pivot = collection[left_index]
-        while left_index < right_index:
-            while left_index < right_index and collection[right_index] >= pivot:
-                right_index -= 1
-            collection[left_index] = collection[right_index]
+        l, r = left_index, right_index
+        pivot = collection[l]
+        while l < r:
+            while l < r and collection[r] >= pivot:
+                r -= 1
+            collection[l] = collection[r]
 
-            while left_index < right_index and collection[left_index] <= pivot:
-                left_index += 1
-            collection[right_index] = collection[left_index]
+            while l < r and collection[l] <= pivot:
+                l += 1
+            collection[r] = collection[l]
 
-        collection[left_index] = pivot
-        return left_index
+        collection[l] = pivot
+        return l
 
     def quick_sort1(self, collection, left_index, right_index):
-        if left_index < right_index:
-            index_of_pivot = self.partition(collection, left_index, right_index)
-            self.quick_sort1(collection, left_index, index_of_pivot-1)
-            self.quick_sort1(collection, index_of_pivot+1, right_index)
+        l, r = left_index, right_index
+        if l < r:
+            index_of_pivot = self.partition(collection, l, r)
+            self.quick_sort1(collection, l, index_of_pivot-1)
+            self.quick_sort1(collection, index_of_pivot+1, r)
             return collection
         return collection
 
