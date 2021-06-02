@@ -52,12 +52,12 @@ class Sort:
         collection[l] = pivot
         return l
 
-    def quick_sort1(self, collection, left_index, right_index):
+    def quick_sort2(self, collection, left_index, right_index):
         l, r = left_index, right_index
         if l < r:
             index_of_pivot = self.partition(collection, l, r)
-            self.quick_sort1(collection, l, index_of_pivot-1)
-            self.quick_sort1(collection, index_of_pivot+1, r)
+            self.quick_sort2(collection, l, index_of_pivot-1)
+            self.quick_sort2(collection, index_of_pivot+1, r)
             return collection
         return collection
 
@@ -65,14 +65,14 @@ class Sort:
         length = len(collection)
         for i in range(length):
             index_of_min_elem = i
-            for j in range(i, length - 1):
-                if collection[index_of_min_elem] > collection[j + 1]:
-                    index_of_min_elem = j + 1
+            for j in range(i + 1, length):
+                if collection[index_of_min_elem] > collection[j]:
+                    index_of_min_elem = j
             collection[i], collection[index_of_min_elem] = collection[index_of_min_elem], collection[i]
         return collection
 
     def insert_sort(self, collection):
-        i = 0
+        i = 1
         while i < len(collection):
             j = i - 1
             k = i
@@ -85,9 +85,3 @@ class Sort:
                     break
             i += 1
         return collection
-
-
-# if __name__ == '__main__':
-#     sort = Sort()
-#     collection = [0, 5, 2, 3, 2]
-#     print(sort.insert_sort(collection))
