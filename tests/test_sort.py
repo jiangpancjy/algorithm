@@ -49,3 +49,13 @@ class TestSort(unittest.TestCase):
         self.assertEqual(self.sort.selection_sort(collection), sorted(collection))
         collection = random.choices(string.ascii_letters + string.digits, k=100)
         self.assertEqual(self.sort.selection_sort(collection), sorted(collection))
+
+    def test_insert_sort(self):
+        self.assertEqual(self.sort.insert_sort([0, 5, 2, 4, 2, 8]), [0, 2, 2, 4, 5, 8])
+        self.assertEqual(self.sort.insert_sort([]), [])
+        self.assertEqual(self.sort.insert_sort([-2, -8, -5]), [-8, -5, -2])
+        self.assertEqual(self.sort.insert_sort(['d', 'a', 'b', 'e', 'c']), ['a', 'b', 'c', 'd', 'e'])
+        collection = random.sample(range(-50, 50), 100)
+        self.assertEqual(self.sort.insert_sort(collection), sorted(collection))
+        collection = random.choices(string.ascii_letters + string.digits, k=100)
+        self.assertEqual(self.sort.insert_sort(collection), sorted(collection))

@@ -70,3 +70,24 @@ class Sort:
                     index_of_min_elem = j + 1
             collection[i], collection[index_of_min_elem] = collection[index_of_min_elem], collection[i]
         return collection
+
+    def insert_sort(self, collection):
+        i = 0
+        while i < len(collection):
+            j = i - 1
+            k = i
+            while j >= 0:
+                if collection[k] < collection[j]:
+                    collection[k], collection[j] = collection[j], collection[k]
+                    j -= 1
+                    k -= 1
+                else:
+                    break
+            i += 1
+        return collection
+
+
+# if __name__ == '__main__':
+#     sort = Sort()
+#     collection = [0, 5, 2, 3, 2]
+#     print(sort.insert_sort(collection))
