@@ -8,8 +8,8 @@ class Sort:
         :return: the same collection ordered by ascending
         """
         length = len(collection)
-        swapped = False
         for i in range(length):
+            swapped = False
             for j in range(length - 1 - i):
                 if collection[j] > collection[j + 1]:
                     swapped = True
