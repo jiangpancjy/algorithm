@@ -1,38 +1,64 @@
 class Node:
-    def __init__(self, val):
-        self.val = val
+    def __init__(self, value):
+        self.value = value
         self.next = None
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
+    def __init__(self, seq=None):
+        if seq is None:
+            self._length = 0
+            self.head = None
+        else:
+            seq_length = len(seq)
+            self._length = seq_length
+            self.head = current_node = Node(seq[0])
+            for i in range(1, seq_length):
+                current_node.next = Node(seq[i])
+                current_node = current_node.next
+
+    def __getitem__(self, pos):
+        self._check_index(pos)
+        current_pos = 0
+        current_node = self.head
+        while current_pos < pos:
+            current_node = current_node.next
+            current_pos += 1
+        return current_node.value
 
     def __str__(self):
         if self.head is None:
             return "head->None"
-        str_ = "head->"
-        curr = self.head
-        while curr.next is not None:
-            str_ += "{}->".format(curr.val)
-            curr = curr.next
-        return str_ + str(curr.val)
+        string = "head->"
+        current_node = self.head
+        while current_node.next is not None:
+            string += f"{current_node.value}->"
+            current_node = current_node.next
+        return string + str(current_node.value)
 
-    def insert_from_head(self, val):
+    def _check_index(self, pos):
+        if not isinstance(pos, int):
+            raise TypeError('Index must be an integer')
+        if pos >= self._length:
+            raise IndexError('Index out of range')
+        if pos < 0:
+            raise IndexError('Index must be positive')
+
+    def insert_from_head(self, value):
         """
         Insert node from the head of the linked list
-        :param val: The value of the node to be inserted
+        :param value: The value of the node to be inserted
         """
-        node = Node(val)
+        node = Node(value)
         node.next = self.head
         self.head = node
 
-    def insert_from_tail(self, val):
+    def insert_from_tail(self, value):
         """
         Insert node from the tail of the linked list
-        :param val: The value of the node to be inserted
+        :param value: The value of the node to be inserted
         """
-        node = Node(val)
+        node = Node(value)
         if self.head is None:
             self.head = node
             return
@@ -42,27 +68,27 @@ class LinkedList:
             prev = prev.next
         prev.next = node
 
-    def insert_from_pos(self, pos, val):
+    def insert_from_pos(self, pos, value):
         """
         Insert a node from the specified position of the linked list
         :param pos: The position of the node to be inserted
             you can input Non-negative integer(0, 1, 2, ……)
-        :param val: The value of the node to be inserted
+        :param value: The value of the node to be inserted
         """
-        node = Node(val)
+        node = Node(value)
         if pos == 0:
             node.next = self.head
             self.head = node
             return
         i = 1
-        curr = self.head
-        while curr is not None:
+        current_node = self.head
+        while current_node is not None:
             if i == pos:
-                node.next = curr.next
-                curr.next = node
+                node.next = current_node.next
+                current_node.next = node
                 return
             else:
-                curr = curr.next
+                current_node = current_node.next
                 i += 1
         print("Position out of range")
 
@@ -102,26 +128,17 @@ class LinkedList:
         if pos == 1:
             self.head = self.head.next
             return
-        curr = self.head
+        current_node = self.head
         i = 1
         while i < pos - 1:
-            if curr.next.next is None:
+            if current_node.next.next is None:
                 break
-            curr = curr.next
+            current_node = current_node.next
             i += 1
         if pos - i > 1:
             print("Sequence out of range")
             return
-        if curr.next.next is None:
-            curr.next = None
+        if current_node.next.next is None:
+            current_node.next = None
         else:
-            curr.next = curr.next.next
-
-    def list_2_linked_list(self, item):
-        if not isinstance(item, list):
-            print("Please input a list")
-            return
-        self.head = curr = Node(item[0])
-        for i in range(1, len(item)):
-            curr.next = Node(item[i])
-            curr = curr.next
+            current_node.next = current_node.next.next
