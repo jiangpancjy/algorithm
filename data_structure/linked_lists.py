@@ -10,21 +10,23 @@ class Node:
 
 class LinkedList:
     def __init__(self, seq=None):
+        self.head = Node(None)
         if seq is None:
             self._length = 0
-            self.head = None
+            self.tail = self.head
         else:
             seq_length = len(seq)
             self._length = seq_length
-            self.head = current_node = Node(seq[0])
+            self.head.next = current_node = Node(seq[0])
             for i in range(1, seq_length):
                 current_node.next = Node(seq[i])
                 current_node = current_node.next
+            self.tail = current_node
 
     @check_pos(method_type=MethodType.INDEX)
     def __getitem__(self, pos):
         i = 0
-        current_node = self.head
+        current_node = self.head.next
         while i < pos:
             current_node = current_node.next
             i += 1
@@ -33,7 +35,7 @@ class LinkedList:
     @check_pos(method_type=MethodType.INDEX)
     def __setitem__(self, pos, value):
         i = 0
-        current_node = self.head
+        current_node = self.head.next
         while i < pos:
             current_node = current_node.next
             i += 1
@@ -43,30 +45,20 @@ class LinkedList:
         return self._length
 
     def __str__(self):
-        if self.head is None:
-            return "head->None"
-        string = "head->"
         current_node = self.head
+        string = "head"
         while current_node.next is not None:
-            string += f"{current_node.value}->"
             current_node = current_node.next
-        return string + str(current_node.value)
+            string += f"->({current_node.value})"
+        return string
 
     def append(self, value):
         """
         Insert node from the tail of the linked list
         :param value: The value of the node to be inserted
         """
-        node = Node(value)
-        if self.head is None:
-            self.head = node
-            self._length = 1
-            return
-
-        prev = self.head
-        while prev.next is not None:
-            prev = prev.next
-        prev.next = node
+        self.tail.next = Node(value)
+        self.tail = self.tail.next
         self._length += 1
 
     @check_pos(method_type=MethodType.INSERT)
@@ -78,13 +70,7 @@ class LinkedList:
         :param value: The value of the node to be inserted
         """
         node = Node(value)
-        if pos == 0:
-            node.next = self.head
-            self.head = node
-            self._length += 1
-            return
-        
-        i = 1
+        i = 0
         current_node = self.head
         while i < pos:
             current_node = current_node.next

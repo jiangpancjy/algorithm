@@ -3,7 +3,7 @@ from utils.constants import MethodType
 
 def check_pos(method_type=MethodType.INDEX):
     def wrapper(func):
-        def decorator(instance, pos):
+        def decorator(instance, pos, *args, **kwargs):
             if not isinstance(pos, int):
                 raise TypeError('Index must be an integer')
             if method_type == MethodType.INDEX:
@@ -14,7 +14,7 @@ def check_pos(method_type=MethodType.INDEX):
                     raise IndexError('Index out of range')
             if pos < 0:
                 raise IndexError('Index must be positive')
-            res = func(instance, pos)
+            res = func(instance, pos, *args, **kwargs)
             return res
         return decorator
     return wrapper
