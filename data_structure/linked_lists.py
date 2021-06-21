@@ -1,3 +1,7 @@
+from utils.decorators import check_pos
+from utils.constants import MethodType
+
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -17,8 +21,8 @@ class LinkedList:
                 current_node.next = Node(seq[i])
                 current_node = current_node.next
 
+    @check_pos(method_type=MethodType.INDEX)
     def __getitem__(self, pos):
-        self._check_index(pos)
         i = 0
         current_node = self.head
         while i < pos:
@@ -26,8 +30,8 @@ class LinkedList:
             i += 1
         return current_node.value
 
+    @check_pos(method_type=MethodType.INDEX)
     def __setitem__(self, pos, value):
-        self._check_index(pos)
         i = 0
         current_node = self.head
         while i < pos:
@@ -48,14 +52,6 @@ class LinkedList:
             current_node = current_node.next
         return string + str(current_node.value)
 
-    def _check_index(self, pos):
-        if not isinstance(pos, int):
-            raise TypeError('Index must be an integer')
-        if pos >= self._length:
-            raise IndexError('Index out of range')
-        if pos < 0:
-            raise IndexError('Index must be positive')
-
     def append(self, value):
         """
         Insert node from the tail of the linked list
@@ -73,6 +69,7 @@ class LinkedList:
         prev.next = node
         self._length += 1
 
+    @check_pos(method_type=MethodType.INSERT)
     def insert(self, pos, value):
         """
         Insert a node from the specified position of the linked list
@@ -80,7 +77,6 @@ class LinkedList:
             you can input Non-negative integer(0, 1, 2, ……)
         :param value: The value of the node to be inserted
         """
-        self._check_index(pos)
         node = Node(value)
         if pos == 0:
             node.next = self.head
