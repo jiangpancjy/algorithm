@@ -16,22 +16,28 @@ class TestLinkedList(TestCase):
         # 判断是否能按照索引的方式访问元素
         self.assertEqual(linked_list3[0], 0)
         self.assertEqual(linked_list3[66], 66)
+        self.assertEqual(linked_list3[-1], 99)
+        self.assertEqual(linked_list3[-66], 34)
 
         # 判断访问元素时索引错误能否抛出对应的异常
         self.assertRaisesRegexpForIndexType(linked_list2.__getitem__, 'a')
         self.assertRaisesRegexpForIndexRange(linked_list2.__getitem__, 3)
-        self.assertRaisesRegexpForIndexPositive(linked_list2.__getitem__, -1)
+        self.assertRaisesRegexpForIndexRange(linked_list2.__getitem__, -4)
 
         # 判断是否能按索引的方式修改元素
         linked_list3[0] = 'hello'
         self.assertEqual(linked_list3[0], 'hello')
         linked_list3[66] = '666'
         self.assertEqual(linked_list3[66], '666')
+        linked_list3[-1] = '99'
+        self.assertEqual(linked_list3[-1], '99')
+        linked_list3[-66] = '34'
+        self.assertEqual(linked_list3[-66], '34')
 
         # 判断修改元素时索引错误能否抛出对应的异常
         self.assertRaisesRegexpForIndexType(linked_list2.__setitem__, 'a', 'value')
         self.assertRaisesRegexpForIndexRange(linked_list2.__setitem__, 3, 'value')
-        self.assertRaisesRegexpForIndexPositive(linked_list2.__setitem__, -1, 'value')
+        self.assertRaisesRegexpForIndexRange(linked_list2.__setitem__, -4, 'value')
 
         # 判断对象的描述信息是否正确
         self.assertEqual(linked_list1.__str__(), 'head->None')
@@ -51,7 +57,7 @@ class TestLinkedList(TestCase):
         linked_list2 = LinkedList([1, 2, 3])
         self.assertRaisesRegexpForIndexType(linked_list2.insert, 'a', 'value')
         self.assertRaisesRegexpForIndexRange(linked_list2.insert, 4, 'value')
-        self.assertRaisesRegexpForIndexPositive(linked_list2.insert, -1, 'value')
+        self.assertRaisesRegexpForIndexRange(linked_list2.insert, -5, 'value')
 
         # 测试方法 insert
         linked_list2.insert(3, 4)
@@ -66,3 +72,11 @@ class TestLinkedList(TestCase):
         self.assertEqual(linked_list2[1], 0.5)
         self.assertEqual(len(linked_list2), 6)
         self.assertEqual(linked_list2.__str__(), 'head->(0)->(0.5)->(1)->(2)->(3)->(4)->None')
+        linked_list2.insert(-1, 3.5)
+        self.assertEqual(linked_list2[-2], 3.5)
+        self.assertEqual(len(linked_list2), 7)
+        self.assertEqual(linked_list2.__str__(), 'head->(0)->(0.5)->(1)->(2)->(3)->(3.5)->(4)->None')
+        linked_list2.insert(-8, -1)
+        self.assertEqual(linked_list2[-8], -1)
+        self.assertEqual(len(linked_list2), 8)
+        self.assertEqual(linked_list2.__str__(), 'head->(-1)->(0)->(0.5)->(1)->(2)->(3)->(3.5)->(4)->None')
