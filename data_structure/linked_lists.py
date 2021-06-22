@@ -50,7 +50,7 @@ class LinkedList:
         while current_node.next is not None:
             current_node = current_node.next
             string += f"->({current_node.value})"
-        return string
+        return string + "->None"
 
     def append(self, value):
         """
