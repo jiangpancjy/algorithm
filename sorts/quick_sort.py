@@ -1,16 +1,15 @@
-def quick_sort(collection):
+def quick_sort(array):
     """
-    Pure implementation of quick sort algorithm in Python
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+    快速排序算法的代码实现
+    :param array: 一个数组
+    :return: 一个升序数组
     """
-    if len(collection) < 2:
-        return collection
-    pivot = collection.pop()
+    if len(array) < 2:
+        return array
+    pivot = array.pop()
     big_elements = list()
     small_elements = list()
-    for element in collection:
+    for element in array:
         if element > pivot:
             big_elements.append(element)
         else:
