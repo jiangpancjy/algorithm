@@ -33,7 +33,7 @@ class TestSort(unittest.TestCase):
         collection2 = collection1.copy()
         self.assertEqual(quick_sort(collection1), sorted(collection2))
 
-    def test_quick_sort1(self):
+    def test_quick_sort2(self):
         self.assertEqual(quick_sort2([0, 5, 2, 3, 2], 0, 4), [0, 2, 2, 3, 5])
         self.assertEqual(quick_sort2([], 0, 0), [])
         self.assertEqual(quick_sort2([-2, -8, -5], 0, 2), [-8, -5, -2])

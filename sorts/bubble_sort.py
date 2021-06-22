@@ -1,17 +1,16 @@
-def bubble_sort(collection):
+def bubble_sort(array):
     """
-    Pure implementation of bubble sort algorithm in Python
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+    冒泡排序算法的代码实现
+    :param array: 一个数组
+    :return: 一个升序数组
     """
-    length = len(collection)
+    length = len(array)
     for i in range(length):
         swapped = False
         for j in range(length - 1 - i):
-            if collection[j] > collection[j + 1]:
+            if array[j] > array[j + 1]:
                 swapped = True
-                collection[j], collection[j + 1] = collection[j + 1], collection[j]
+                array[j], array[j + 1] = array[j + 1], array[j]
         if not swapped:
-            break  # Stop iteration if the collection is sorted.
-    return collection
+            break  # 如果数组已经是升序，则停止迭代
+    return array

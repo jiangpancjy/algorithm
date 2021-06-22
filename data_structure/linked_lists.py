@@ -54,8 +54,8 @@ class LinkedList:
 
     def append(self, value):
         """
-        Insert node from the tail of the linked list
-        :param value: The value of the node to be inserted
+        在链表尾部插入一个节点
+        :param value: 要插入节点的值
         """
         self.tail.next = Node(value)
         self.tail = self.tail.next
@@ -64,10 +64,9 @@ class LinkedList:
     @check_pos(method_type=MethodType.INSERT)
     def insert(self, pos, value):
         """
-        Insert a node from the specified position of the linked list
-        :param pos: The position of the node to be inserted
-            you can input Non-negative integer(0, 1, 2, ……)
-        :param value: The value of the node to be inserted
+        在链表指定位置插入一个节点
+        :param pos: 节点在链表中插入的位置，类型为非负整数
+        :param value: 要插入节点的值
         """
         node = Node(value)
         i = 0
