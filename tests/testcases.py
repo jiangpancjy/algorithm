@@ -18,5 +18,3 @@ class TestCase(unittest.TestCase):
             *args,
             **kwargs,
         )
-
-
