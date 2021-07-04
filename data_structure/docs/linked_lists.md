@@ -291,9 +291,9 @@ print(linked_list)
 
 
 
-![](.\img\3.png)
+![](./img/3.png)
 
-![](.\img\4.png)
+![](./img/4.png)
 
 通常我们会在链表的开头添加两个哨兵节点 (sentinel) 作为伪头 (pseudo-head) 和伪尾 (pseudo-tail)，可以简化插入、删除等操作。哨兵节点不计入链表长度，也无法用索引访问。
 
