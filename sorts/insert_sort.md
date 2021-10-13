@@ -21,18 +21,30 @@ def insert_sort(array):
     :param array: 一个数组
     :return: 一个升序数组
     """
-    i = 1
-    while i < len(array):
-        j = i - 1
-        k = i
-        while j >= 0:
-            if array[k] < array[j]:
-                array[k], array[j] = array[j], array[k]
-                j -= 1
-                k -= 1
+    for i in range(1, len(array)):
+        j = i
+        while j > 0:
+            if array[j] <= array[j - 1]:
+                array[j], array[j - 1] = array[j - 1], array[j]
             else:
                 break
-        i += 1
+            j -= 1
+    return array
+
+
+# 更优的实现
+def insert_sort2(array):
+    """
+    :param array: 一个数组
+    :return: 一个升序数组
+    """
+    for insert_index, insert_value in enumerate(array[1:]):
+        temp_index = insert_index
+        while insert_index >= 0 and insert_value < array[insert_index]:
+            array[insert_index + 1] = array[insert_index]
+            insert_index -= 1
+        if insert_index != temp_index:
+            array[insert_index + 1] = insert_value
     return array
 ```
 
