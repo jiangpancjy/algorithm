@@ -5,7 +5,7 @@ def bubble_sort(array):
     :return: 一个升序数组
     """
     length = len(array)
-    for i in range(length):
+    for i in range(length - 1):
         swapped = False
         for j in range(length - 1 - i):
             if array[j] > array[j + 1]:
