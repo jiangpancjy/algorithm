@@ -6,7 +6,7 @@ from sorts.bubble_sort import bubble_sort
 from sorts.quick_sort import quick_sort
 from sorts.quick_sort2 import quick_sort2
 from sorts.selection_sort import selection_sort
-from sorts.insert_sort import insert_sort
+from sorts.insert_sort import insert_sort, insert_sort2
 
 
 class TestSort(unittest.TestCase):
@@ -62,3 +62,13 @@ class TestSort(unittest.TestCase):
         self.assertEqual(insert_sort(collection), sorted(collection))
         collection = random.choices(string.ascii_letters + string.digits, k=100)
         self.assertEqual(insert_sort(collection), sorted(collection))
+
+    def test_insert_sort2(self):
+        self.assertEqual(insert_sort2([0, 5, 2, 4, 2, 8]), [0, 2, 2, 4, 5, 8])
+        self.assertEqual(insert_sort2([]), [])
+        self.assertEqual(insert_sort2([-2, -8, -5]), [-8, -5, -2])
+        self.assertEqual(insert_sort2(['d', 'a', 'b', 'e', 'c']), ['a', 'b', 'c', 'd', 'e'])
+        collection = random.sample(range(-50, 50), 100)
+        self.assertEqual(insert_sort2(collection), sorted(collection))
+        collection = random.choices(string.ascii_letters + string.digits, k=100)
+        self.assertEqual(insert_sort2(collection), sorted(collection))
