@@ -3,8 +3,7 @@ import string
 import unittest
 
 from sorts.bubble_sort import bubble_sort
-from sorts.quick_sort import quick_sort
-from sorts.quick_sort2 import quick_sort2
+from sorts.quick_sort import quick_sort, quick_sort2
 from sorts.selection_sort import selection_sort
 from sorts.insert_sort import insert_sort, insert_sort2
 
