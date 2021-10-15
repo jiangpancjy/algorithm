@@ -1,4 +1,4 @@
-def insert_sort(array):
+def insertion_sort(array):
     """
     插入排序算法的代码实现
     :param array: 一个数组
@@ -15,7 +15,7 @@ def insert_sort(array):
     return array
 
 
-def insert_sort2(array):
+def insertion_sort2(array):
     """
     插入排序算法的代码实现-升级版
     :param array: 一个数组
