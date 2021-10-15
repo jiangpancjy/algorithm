@@ -6,11 +6,11 @@ def bubble_sort(array):
     """
     length = len(array)
     for i in range(length - 1):
-        swapped = False
+        is_swapped = False
         for j in range(length - 1 - i):
             if array[j] > array[j + 1]:
-                swapped = True
+                is_swapped = True
                 array[j], array[j + 1] = array[j + 1], array[j]
-        if not swapped:
+        if not is_swapped:
             break  # 如果数组已经是升序，则停止迭代
     return array
