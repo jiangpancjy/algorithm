@@ -1,6 +1,6 @@
 # 冒泡排序
 
-![](./img/bubble_sort.gif)
+![](img/bubble_sort.gif)
 
 ### 算法描述
 
