@@ -27,6 +27,4 @@ class Solution:
                 return False
 
     def _match(self, left_bracket, right_bracket):
-        if "([{".index(left_bracket) == ")]}".index(right_bracket):
-            return True
-        return False
+        return "([{".index(left_bracket) == ")]}".index(right_bracket)
